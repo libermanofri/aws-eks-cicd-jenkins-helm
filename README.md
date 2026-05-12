@@ -741,16 +741,14 @@ Check:
 
 ## Security Notes
 
-- Do not commit real Telegram tokens to GitHub.
-- Do not commit AWS access keys or secret keys.
+- Do not commit real Telegram tokens, AWS access keys, or secret keys.
 - Use IAM roles or secured Jenkins credentials for AWS access.
-- Keep Kubernetes Secrets out of source control.
 - Use least-privilege IAM permissions for Jenkins, ECR, and EKS access.
 - Consider enabling Kubernetes secret encryption at rest.
 - Prefer temporary credentials and IAM roles instead of long-lived static credentials.
-- Avoid exposing account-specific values in public documentation when placeholders are enough.
-
-> Note: Some project files may include account-specific AWS identifiers such as an AWS account ID or ECR repository path. These values are not secret credentials, but in a production project they should be externalized into Jenkins credentials, environment variables, or private configuration.
+- The Telegram bot token is consumed at runtime from a Kubernetes Secret named `telegram-token-secret`.
+- The current Jenkins pipeline does not create this secret, so it must exist in the target namespace before deployment.
+- Some project files may include account-specific AWS identifiers such as an AWS account ID or ECR repository path. These values are not secret credentials, but in a production project they should be externalized into Jenkins credentials, environment variables, or private configuration.
 
 ---
 
