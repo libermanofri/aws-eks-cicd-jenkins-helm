@@ -750,6 +750,8 @@ Check:
 - Prefer temporary credentials and IAM roles instead of long-lived static credentials.
 - Avoid exposing account-specific values in public documentation when placeholders are enough.
 
+> Note: Some project files may include account-specific AWS identifiers such as an AWS account ID or ECR repository path. These values are not secret credentials, but in a production project they should be externalized into Jenkins credentials, environment variables, or private configuration.
+
 ---
 
 ## What I Learned
